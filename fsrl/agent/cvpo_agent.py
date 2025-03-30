@@ -5,6 +5,7 @@ import numpy as np
 import torch
 import torch.nn as nn
 from tianshou.utils.net.common import Net
+from Quantum import QNet
 from tianshou.utils.net.continuous import ActorProb
 from torch.distributions import Independent, Normal
 
@@ -137,7 +138,7 @@ class CVPOAgent(OffpolicyAgent):
             env.spec, "max_episode_steps"
         ), "Please use an env wrapper to provide 'max_episode_steps' for CVPO"
 
-        net = Net(state_shape, hidden_sizes=hidden_sizes, device=device)
+        net = QNet(state_shape, hidden_sizes=hidden_sizes, device=device)
         actor = ActorProb(
             net,
             action_shape,
